@@ -45,6 +45,7 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
   background-color: ${(props) => props.theme.color.black};
   line-height: 1.2;
+  overflow-x: hidden;
 }
 menu, ol, ul {
   list-style: none;

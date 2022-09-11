@@ -1,5 +1,11 @@
+import MainCarousel from "../components/MainCarousel";
+
 function Home() {
-  return <div>Wavvy clone project</div>;
+  return (
+    <>
+      <MainCarousel />
+    </>
+  );
 }
 
 export default Home;
