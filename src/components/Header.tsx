@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { Link, useLocation, useMatch } from "react-router-dom";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { AiOutlineSearch } from "react-icons/ai";
 import { MdCancel } from "react-icons/md";
 
@@ -90,7 +90,7 @@ const CategoryBar = styled.div`
   position: relative;
   &:hover {
     ${CategoryList} {
-      display: show;
+      display: initial;
     }
   }
 `;
@@ -214,30 +214,32 @@ function Header() {
           </Items>
         </Col>
         <Col>
-          <Search>
-            <Icon
-              onClick={toggleSearch}
-              animate={{ x: searchOpen ? -265 : 0 }}
-              transition={{ type: "linear", duration: 0.5 }}
-            >
-              <AiOutlineSearch size={24} />
-            </Icon>
-            <Icon
-              onClick={resetInput}
-              animate={{ scale: searchOpen ? 1 : 0 }}
-              transition={{ type: "linear", duration: 0.5 }}
-            >
-              <MdCancel size={24} />
-            </Icon>
-            <Input
-              animate={{ scaleX: searchOpen ? 1 : 0 }}
-              transition={{ type: "linear", duration: 0.5 }}
-              type="text"
-              value={value}
-              onChange={onChange}
-              placeholder="제목, 장르, 배우로 찾아보세요."
-            />
-          </Search>
+          <AnimatePresence initial={false}>
+            <Search>
+              <Icon
+                onClick={toggleSearch}
+                animate={{ x: searchOpen ? -265 : 0 }}
+                transition={{ type: "linear", duration: 0.5 }}
+              >
+                <AiOutlineSearch size={24} />
+              </Icon>
+              <Icon
+                onClick={resetInput}
+                animate={{ scale: searchOpen ? 1 : 0 }}
+                transition={{ type: "linear", duration: 0.5 }}
+              >
+                <MdCancel size={24} />
+              </Icon>
+              <Input
+                animate={{ scaleX: searchOpen ? 1 : 0 }}
+                transition={{ type: "linear", duration: 0.5 }}
+                type="text"
+                value={value}
+                onChange={onChange}
+                placeholder="제목, 장르, 배우로 찾아보세요."
+              />
+            </Search>
+          </AnimatePresence>
           <Link to="/login">
             <Login location={location}>로그인 {loginMatch && <Circle />}</Login>
           </Link>
